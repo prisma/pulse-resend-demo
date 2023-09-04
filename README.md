@@ -6,7 +6,7 @@ This repository contains an example Node.js application that demonstrates how to
 
 ## Prerequisite
 
-1. Setup a Pulse compatible PostgreSQL database. Read the requirements for Pulse [here](https://www.prisma.io/docs/data-platform/pulse/getting-started#1-database-setup). To easily get started, you can watch the Pulse setup video below with Railway.
+1. Setup a Pulse compatible PostgreSQL database. Read the requirements for Pulse [here](https://www.prisma.io/docs/data-platform/pulse/getting-started#1-database-setup). To easily get started, you can watch the Pulse setup with Railway video below.
    [![Watch the video](https://img.youtube.com/vi/DrTnowASuqo/0.jpg)](https://www.youtube.com/watch?v=DrTnowASuqo)
 2. Visit [Prisma Data Platform](https://pris.ly/pdp) and enable Pulse
 3. Resend API key. Create an account [here](https://resend.com/).
