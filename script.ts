@@ -3,6 +3,11 @@ import { PrismaClient } from "@prisma/client";
 import { withPulse } from "@prisma/extension-pulse";
 import { Resend } from "resend";
 
+process.on("SIGINT", () => {
+  console.log("Received SIGINT signal. Exiting gracefully...");
+  process.exit(0);
+});
+
 type UserEmail = {
   email: string;
   name: string;
@@ -40,9 +45,12 @@ const sendUserCreationEmail = async ({ email, name }: UserEmail) => {
 // Subscribe to user creation events and send emails
 const emailSubscriber = async () => {
   const subscription = await prisma.user.subscribe({
-    create: {
-      after: {},
-    },
+    create: {},
+  });
+
+  process.on("exit", (code) => {
+    console.log("Closing Prisma Pulse Subscription.");
+    subscription.stop();
   });
 
   if (subscription instanceof Error) {
@@ -51,9 +59,11 @@ const emailSubscriber = async () => {
 
   for await (const event of subscription) {
     console.log("Received event:", event);
-    const { email, name } = event.after;
+    const { email, name } = event.created;
+
     try {
       await sendUserCreationEmail({ email, name });
+      console.log("Email sent!");
     } catch (error) {
       console.error("Email sending error:", error);
     }

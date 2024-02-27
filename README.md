@@ -51,4 +51,4 @@ To get started, follow these steps:
 
 ## Conclusion
 
-This example demonstrates how to integrate Prisma with the Pulse extension and Resend to send emails upon user creation events. You can use this as a starting point to build more complex applications that involve database interactions and email notifications.
+This example demonstrates how to integrate Prisma with the Pulse extension and Resend to send emails upon user creation events.
